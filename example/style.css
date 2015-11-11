@@ -1,0 +1,133 @@
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+body {
+  font: normal 1em/1.5 "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.cf-modal__backdrop-scroller {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1040;
+
+  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.cf-modal__backdrop-outer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: table;
+}
+
+.cf-modal__backdrop {
+  display: table-cell;
+  vertical-align: middle;
+
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.8);
+
+  -webkit-transform-origin: center;
+  transform-origin: center;
+}
+
+.cf-modal {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+
+  background: white;
+  padding: 20px;
+
+  -webkit-transform-origin: center;
+  transform-origin: center;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.cf-modal:focus {
+  outline: none;
+}
+
+/**
+ * Animations
+ */
+
+/**
+ * Backdrop
+ */
+
+.cf-transition-modal-appear .cf-modal__backdrop,
+.cf-transition-modal-enter .cf-modal__backdrop,
+.cf-transition-modal-leave.cf-transition-modal-leave-active .cf-modal__backdrop {
+  background: transparent;
+}
+
+.cf-transition-modal-appear.cf-transition-modal-appear-active .cf-modal__backdrop,
+.cf-transition-modal-enter.cf-transition-modal-enter-active .cf-modal__backdrop,
+.cf-transition-modal-leave .cf-modal__backdrop {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.cf-transition-modal-appear-active .cf-modal__backdrop,
+.cf-transition-modal-enter-active .cf-modal__backdrop,
+.cf-transition-modal-leave-active .cf-modal__backdrop {
+  -webkit-transition: background 200ms ease-in;
+  transition: background 200ms ease-in;
+}
+
+/**
+ * Modal
+ */
+
+.cf-transition-modal-appear .cf-modal,
+.cf-transition-modal-enter .cf-modal,
+.cf-transition-modal-leave.cf-transition-modal-leave-active .cf-modal {
+  opacity: 0;
+  -webkit-transform: matrix3d(
+    1, 0, 0, 0,
+    0, 1, 0, -0.0002,
+    0, 0, 1, 0,
+    0, -10, 0, 1.1
+  );
+  transform: matrix3d(
+    1, 0, 0, 0,
+    0, 1, 0, -0.0002,
+    0, 0, 1, 0,
+    0, -10, 0, 1.1
+  );
+}
+
+.cf-transition-modal-appear.cf-transition-modal-appear-active .cf-modal,
+.cf-transition-modal-enter.cf-transition-modal-enter-active .cf-modal,
+.cf-transition-modal-leave .cf-modal {
+  opacity: 1;
+  -webkit-transform: matrix3d(
+    1, 0, 0, 0,
+    0, 1, 0, 0,
+    0, 0, 1, 0,
+    0, 0, 0, 1
+  );
+  transform: matrix3d(
+    1, 0, 0, 0,
+    0, 1, 0, 0,
+    0, 0, 1, 0,
+    0, 0, 0, 1
+  );
+}
+
+.cf-transition-modal-appear-active .cf-modal,
+.cf-transition-modal-enter-active .cf-modal,
+.cf-transition-modal-leave-active .cf-modal {
+  transition: opacity 200ms ease, transform 200ms ease;
+}
