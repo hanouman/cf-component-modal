@@ -3,7 +3,7 @@ import React from 'react';
 import {render, unmountComponentAtNode} from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 
-import Modal from '../src/index';
+import Modal from '../src/Modal';
 
 describe('Modal', function() {
   beforeEach(function() {
