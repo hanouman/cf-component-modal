@@ -5,6 +5,9 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class Modal extends React.Component {
   static propTypes = {
+    type: PropTypes.oneOf([
+      'confirm'
+    ]),
     isOpen: PropTypes.bool.isRequired,
     onRequestClose: PropTypes.func.isRequired,
     closeOnEsc: PropTypes.bool,
@@ -17,6 +20,12 @@ class Modal extends React.Component {
   };
 
   render() {
+    var modalClassName = 'cf-modal';
+
+    if (this.props.type === 'confirm') {
+      modalClassName += ' cf-modal--confirm';
+    }
+
     return (
       <ReactGateway>
         <ReactCSSTransitionGroup
@@ -32,7 +41,7 @@ class Modal extends React.Component {
                   ref='modal'
                   key='modal'
                   backdropClassName='cf-modal__backdrop'
-                  modalClassName='cf-modal'
+                  modalClassName={modalClassName}
                   closeOnEsc={this.props.closeOnEsc}
                   closeOnBackdropClick={this.props.closeOnBackdropClick}
                   onClose={this.props.onRequestClose}>
