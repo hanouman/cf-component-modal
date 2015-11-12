@@ -12,7 +12,15 @@ $ npm install --save cf-component-modal
 
 ```js
 import React from 'react';
-import Modal from 'cf-component-modal';
+import {
+  Modal,
+  ModalHeader,
+  ModalTitle,
+  ModalClose,
+  ModalBody,
+  ModalFooter,
+  ModalActions
+} from 'cf-component-modal';
 
 export default class Application extends React.Component {
   state = {
@@ -35,8 +43,18 @@ export default class Application extends React.Component {
         <Modal
           isOpen={this.state.isModalOpen}
           onRequestClose={this.handleRequestClose.bind(this)}>
-          <h1>Hello from Modal</h1>
-          <p>Isn't this a nice modal?</p>
+          <ModalHeader>
+            <ModalTitle>Hello from Modal</ModalTitle>
+            <ModalClose onClick={this.handleRequestClose.bind(this)}/>
+          </ModalHeader>
+          <ModalBody>
+            <p>Isn't this a nice modal?</p>
+          </ModalBody>
+          <ModalFooter>
+            <ModalActions>
+              <button onClick={this.handleRequestClose.bind(this)}>Close Modal</button>
+            </ModalActions>
+          </ModalFooter>
         </Modal>
       </div>
     );
